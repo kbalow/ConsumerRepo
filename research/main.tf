@@ -6,6 +6,10 @@ data "terraform_remote_state" "network" {
   }
 }
 
+provider "aws" {
+  region = "${data.terraform_remote_state.network.region}"  
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
