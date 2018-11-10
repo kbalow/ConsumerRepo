@@ -7,7 +7,7 @@ data "terraform_remote_state" "network" {
 }
 
 provider "aws" {
-  region = "${data.terraform_remote_state.network.region}"  
+  region = "us-east-2"  
 }
 
 data "aws_ami" "ubuntu" {
