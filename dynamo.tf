@@ -4,7 +4,7 @@ variable "environment"{
   }
 
 resource "aws_dynamodb_table" "basic-dynamodb-table" {
-  name           = "${var.environment}-GameScores"
+  name           = "${var.org}-${var.environment}-GameScores"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
