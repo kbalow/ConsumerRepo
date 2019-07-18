@@ -15,22 +15,23 @@ variable "number_of_instances" {
 
 variable "name" {
   description = "The name of the app deployed"
-  default = "Consumer-App"
+  default     = "Consumer-App"
 }
 
 module "elb" {
   source  = "app.terraform.io/aharness-org/consumer-elb/aws"
-  version = "1.9"
-  name = "${var.name}-elb"
-  
+  version = "1.24"
+  name    = "${var.name}-elb"
+
   # ELB attachments
-  number_of_instances = "${var.number_of_instances}"
-  instances           = ["${module.ec2_instances.id}"]
+  number_of_instances = var.number_of_instances
+  instances           = [module.ec2_instances.id]
 }
-  
+
 module "ec2_instances" {
-  source = "app.terraform.io/aharness-org/consumer-ec2-instance/aws"
-  version = "1.4"
-  name                        = "${var.name}-ec2"
-  instance_count = "${var.number_of_instances}"
+  source         = "app.terraform.io/aharness-org/consumer-ec2-instance/aws"
+  version        = "1.7"
+  name           = "${var.name}-ec2"
+  instance_count = var.number_of_instances
 }
+
