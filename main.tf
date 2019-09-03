@@ -1,13 +1,13 @@
 data "terraform_remote_state" "network" {
   backend = "atlas"
 
-  config {
+  config = {
     name = "${var.org}/${var.workspace_name}"
   }
 }
 
 provider "aws" {
-  region = "${data.terraform_remote_state.network.region}"  
+  region = data.terraform_remote_state.network.region
 }
 
 data "aws_ami" "ubuntu" {
@@ -27,13 +27,13 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  subnet_id = "${data.terraform_remote_state.network.development_subnet_id}"
+  subnet_id     = data.terraform_remote_state.network.development_subnet_id
 
   tags {
-    Name = "ProdCon Instance"
+    Name  = "ProdCon Instance"
     owner = "Solutions Engineer"
-    ttl = "1"
+    ttl   = "1"
   }
 }
