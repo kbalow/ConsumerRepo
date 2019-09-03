@@ -31,7 +31,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   subnet_id     = data.terraform_remote_state.network.outputs.development_subnet_id
 
-  tags {
+  tags = {
     Name  = "ProdCon Instance"
     owner = "Solutions Engineer"
     ttl   = "1"
