@@ -7,7 +7,7 @@ data "terraform_remote_state" "network" {
 }
 
 provider "aws" {
-  region = data.terraform_remote_state.network.region
+  region = data.terraform_remote_state.network.outputs.region
 }
 
 data "aws_ami" "ubuntu" {
@@ -29,7 +29,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  subnet_id     = data.terraform_remote_state.network.development_subnet_id
+  subnet_id     = data.terraform_remote_state.network.outputs.development_subnet_id
 
   tags {
     Name  = "ProdCon Instance"
