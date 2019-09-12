@@ -32,9 +32,10 @@ resource "aws_instance" "web" {
   subnet_id     = "${lookup(local.subnets, var.environment, "fail")}"
 
   tags = {
-    Name  = "ProdCon Instance"
-    owner = "Solutions Engineer"
-    ttl   = "1"
+    Name        = "ProdCon - ${var.environment} - Instance"
+    owner       = "Solutions Engineer"
+    Environment = "${var.environment}"
+    ttl         = "1"
   }
 }
 
