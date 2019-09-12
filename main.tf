@@ -40,8 +40,8 @@ resource "aws_instance" "web" {
 
 locals {
   subnets = {
-    prod  = "${data.terraform_remote_state.network.production_subnet_id}"
-    stage = "${data.terraform_remote_state.network.staging_subnet_id}"
-    dev   = "${data.terraform_remote_state.network.development_subnet_id}"
+    prod  = "${data.terraform_remote_state.network.outputs.production_subnet_id}"
+    stage = "${data.terraform_remote_state.network.outputs.staging_subnet_id}"
+    dev   = "${data.terraform_remote_state.network.outputs.development_subnet_id}"
   }
 }
