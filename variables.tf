@@ -1,9 +1,5 @@
-variable "org" {
-}
-
-variable "workspace_name" {
-}
-
-variable "environment" {
-}
+variable "org" {}
+variable "workspace_name" {}
+variable "environment" {}
+variable "name" {}
 
