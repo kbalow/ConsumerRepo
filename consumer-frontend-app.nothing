@@ -23,6 +23,7 @@ module "elb" {
   version = "1.24.0"
   name    = "${var.name}-elb"
 
+
   # ELB attachments
   number_of_instances = var.number_of_instances
   instances           = [module.ec2_instances.id]

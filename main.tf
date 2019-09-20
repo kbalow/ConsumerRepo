@@ -35,6 +35,7 @@ resource "aws_instance" "web" {
     Name  = "ProdCon Instance"
     owner = "Solutions Engineer"
     ttl   = "1"
+
   }
 }
 
