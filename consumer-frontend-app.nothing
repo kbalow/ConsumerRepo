@@ -29,4 +29,6 @@ module "ec2_instances" {
   version = "1.7.2"
   name                        = "${var.name}-ec2"
   instance_count = "${var.number_of_instances}"
+
 }
+
